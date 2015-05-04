@@ -3,32 +3,32 @@ Not using dict comprehensions
 
 You may encounter the old style of initializing a dict (passing an iterable of key-value pairs) in older Python code written before version 2.7. The new dict comprehension style is functionally equivalent and is much more readable. Consider refactoring the old-style code to use the new style (but only if you are using Python 2.7 or higher).
 
-Example
--------
+Anti-pattern
+------------
 
 The code below demonstrates the old syntax of dict initialization. Although there is nothing syntactically wrong with this code, it is somewhat hard to read.
 
 .. code:: python
 
-    l = [1,2,3]
+    numbers = [1,2,3]
 
-    d = dict([(n,n*2) for n in l])  # hard to read
+    my_dict = dict([(number,number*2) for number in numbers])  # hard to read
 
-    print d  # {1: 2, 2: 4, 3: 6} 
+    print my_dict  # {1: 2, 2: 4, 3: 6}
 
-Solutions
----------
+Best practice
+-------------
 
 The modified code below uses the new dict comprehension syntax which was introduced in Python 2.7.
 
 .. code:: python
 
-    l = [1, 2, 3]
+    numbers = [1, 2, 3]
 
-    d = {n: n * 2 for n in l}
+    my_dict = {number: number * 2 for number in numbers}
 
-    print d  # {1: 2, 2: 4, 3: 6}
-    
+    print my_dict # {1: 2, 2: 4, 3: 6}
+
 References
 ----------
 

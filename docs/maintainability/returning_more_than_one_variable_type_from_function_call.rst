@@ -6,8 +6,8 @@ something else (e.g. ``None``) the caller of that function will always need to c
 return value before proceeding. This makes for confusing and complex code. If the function is unable
 to produce the supposed return value it is better to raise an exception that can be caught by the caller instead.
 
-Example
--------
+Anti-pattern
+------------
 
 In the code below, the function ``get_secret_code()`` returns a secret code when the code calling the function provides the correct password. If the password is incorrect, the function returns ``None``. This leads to hard-to-maintain code, because the caller will have to check the type of the return value before proceeding.
 
@@ -21,14 +21,15 @@ In the code below, the function ``get_secret_code()`` returns a secret code when
 
     secret_code = get_secret_code("unicycle")
 
-    if secret_code == None:
-        print "Wrong password."
+    if secret_code is None:
+        print("Wrong password.")
     else:
-        print "The secret code is {}".format(secret_code)
+        print("The secret code is {}".format(secret_code))
         
 
-Solutions
----------
+
+Best practice
+-------------
 
 Raise exception when error is encountered or precondition is unsatisfied
 ........................................................................
@@ -45,6 +46,6 @@ When a calling code provides invalid data to a function, or a precondition to th
 
     try:
         secret_code = get_secret_code("unicycle")
-        print "The secret code is {}".format(secret_code)
+        print("The secret code is {}".format(secret_code))
     except ValueError:
-        print "Wrong password."
+        print("Wrong password.")
